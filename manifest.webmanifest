@@ -1,7 +1,6 @@
 {
   "name": "SUNDAY LUCK - 今週の4口",
   "short_name": "今週の4口",
-  "description": "毎週日曜に今週の買い方と番号を楽しく決めるアプリ",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b1554",
