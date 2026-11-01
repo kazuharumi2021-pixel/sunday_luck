@@ -1,1 +1,372 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1554"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="今週の4口"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="stylesheet" href="style.css"><title>SUNDAY LUCK</title></head><body><div class="app"><header><img src="icon-192.png"><div><h1>SUNDAY LUCK</h1><p>日曜の夜、今週の運を決める。</p></div></header><main><section id="home" class="page active"><div id="syncCard" class="card sync"><div><b>当せん結果</b><p id="syncText">確認しています…</p></div><button id="syncBtn">↻ 確認</button></div><div class="card hero"><h2>今週の作戦</h2><div id="mode" class="mode">未抽選</div><p id="modeDesc">4つのスタイルから今週の買い方を決めます。</p><button id="draw" class="primary">🎲 今週の作戦を抽選</button></div><div id="ticketCard" class="card hidden"><div class="row"><h2>今週の4口</h2><span id="lockTag" class="tag">未確定</span></div><div id="tickets"></div><button id="lock" class="primary">🔒 今週はこれで買う</button><button id="redraw" class="secondary">番号だけ引き直す</button><p class="small">確定後は次の日曜まで変更できません。ナンバーズは同じ番号を月〜金の5回購入する前提です。</p></div><div class="card"><h2>先週までの結果</h2><div id="recent"></div></div><div class="notice">統計・開運・MIXは娯楽用です。当せん確率の向上を保証しません。結果は必ず公式発表でも確認してください。</div></section><section id="history" class="page"><h2>履歴</h2><div id="historyList"></div></section><section id="stats" class="page"><h2>成績</h2><div id="statsBox"></div></section><section id="settings" class="page"><h2>設定</h2><div class="card"><h3>ナンバーズ申込タイプ</h3><label><input type="radio" name="nt" value="set" checked> セット固定</label><label><input type="radio" name="nt" value="draw"> 毎週抽選</label><button id="saveSet" class="primary">保存</button></div><div class="card"><h3>データ管理</h3><button id="exportBtn" class="secondary">バックアップを書き出す</button><label class="file">バックアップを読み込む<input id="importFile" type="file" accept="application/json"></label></div></section></main><nav><button data-p="home" class="on">⌂<span>ホーム</span></button><button data-p="history">▣<span>履歴</span></button><button data-p="stats">▥<span>成績</span></button><button data-p="settings">⚙<span>設定</span></button></nav></div><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b1554"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="今週の4口"
+  >
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="apple-touch-icon.png"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <title>SUNDAY LUCK</title>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+
+    <img
+      src="icon-192.png"
+      alt="SUNDAY LUCK"
+    >
+
+    <div>
+      <h1>SUNDAY LUCK</h1>
+      <p>日曜の夜、今週の運を決める。</p>
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <section
+      id="home"
+      class="page active"
+    >
+
+      <div
+        id="syncCard"
+        class="card sync"
+      >
+
+        <div>
+          <b>当せん結果</b>
+          <p id="syncText">
+            確認しています…
+          </p>
+        </div>
+
+        <button id="syncBtn">
+          ↻ 確認
+        </button>
+
+      </div>
+
+
+      <div class="card hero">
+
+        <h2>
+          今週の作戦
+        </h2>
+
+        <div
+          id="mode"
+          class="mode"
+        >
+          未抽選
+        </div>
+
+        <p id="modeDesc">
+          4つのスタイルから今週の買い方を決めます。
+        </p>
+
+        <button
+          id="draw"
+          class="primary"
+        >
+          🎲 今週の作戦を抽選
+        </button>
+
+      </div>
+
+
+      <div
+        id="ticketCard"
+        class="card hidden"
+      >
+
+        <div class="row">
+
+          <h2>
+            今週の4口
+          </h2>
+
+          <span
+            id="lockTag"
+            class="tag"
+          >
+            未確定
+          </span>
+
+        </div>
+
+
+        <div id="tickets"></div>
+
+
+        <button
+          id="lock"
+          class="primary"
+        >
+          🔒 今週はこれで買う
+        </button>
+
+
+        <button
+          id="redraw"
+          class="secondary"
+        >
+          番号だけ引き直す
+        </button>
+
+
+        <p class="small">
+          確定後は次の日曜日まで変更できません。
+          ナンバーズは同じ番号を月〜金の5回購入する前提です。
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="row">
+
+          <h2>
+            今週の＋1チャレンジ
+          </h2>
+
+          <span class="tag">
+            任意
+          </span>
+
+        </div>
+
+
+        <div id="bonusArea">
+
+          <p class="small">
+            「今週もう1口買ってみようかな」
+            というときのチャレンジ枠です。
+          </p>
+
+          <button
+            id="bonusDrawButton"
+            class="secondary"
+          >
+            🎁 ＋1を抽選する
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>
+          先週までの結果
+        </h2>
+
+        <div id="recent"></div>
+
+      </div>
+
+
+      <div class="notice">
+        統計・開運・MIXは娯楽用の選び方です。
+        当せん確率の向上を保証するものではありません。
+        結果は公式発表でも確認してください。
+      </div>
+
+    </section>
+
+
+    <section
+      id="history"
+      class="page"
+    >
+
+      <h2>
+        履歴
+      </h2>
+
+      <div id="historyList"></div>
+
+    </section>
+
+
+    <section
+      id="stats"
+      class="page"
+    >
+
+      <h2>
+        成績
+      </h2>
+
+      <div id="statsBox"></div>
+
+    </section>
+
+
+    <section
+      id="settings"
+      class="page"
+    >
+
+      <h2>
+        設定
+      </h2>
+
+
+      <div class="card">
+
+        <h3>
+          ナンバーズ申込タイプ
+        </h3>
+
+
+        <label>
+
+          <input
+            type="radio"
+            name="nt"
+            value="set"
+            checked
+          >
+
+          セット固定
+
+        </label>
+
+
+        <label>
+
+          <input
+            type="radio"
+            name="nt"
+            value="draw"
+          >
+
+          毎週抽選
+
+        </label>
+
+
+        <button
+          id="saveSet"
+          class="primary"
+        >
+          保存
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          データ管理
+        </h3>
+
+
+        <button
+          id="exportBtn"
+          class="secondary"
+        >
+          バックアップを書き出す
+        </button>
+
+
+        <label class="file">
+
+          バックアップを読み込む
+
+          <input
+            id="importFile"
+            type="file"
+            accept="application/json"
+          >
+
+        </label>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <nav>
+
+    <button
+      data-p="home"
+      class="on"
+    >
+      ⌂
+      <span>ホーム</span>
+    </button>
+
+
+    <button data-p="history">
+      ▣
+      <span>履歴</span>
+    </button>
+
+
+    <button data-p="stats">
+      ▥
+      <span>成績</span>
+    </button>
+
+
+    <button data-p="settings">
+      ⚙
+      <span>設定</span>
+    </button>
+
+  </nav>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
