@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T06:14:17.959864+09:00",
+  "updated": "2026-11-19T05:49:30.470126+09:00",
   "loto7": [
     {
       "draw": 702,
@@ -292,6 +292,24 @@
         "box": 0
       },
       "source": "SMBC"
+    },
+    {
+      "draw": 7117,
+      "date": "2026-11-18",
+      "main": [
+        4,
+        9,
+        3,
+        4
+      ],
+      "bonus": [],
+      "prizes": {
+        "setStraight": 0,
+        "setBox": 0,
+        "straight": 0,
+        "box": 0
+      },
+      "source": "SMBC"
     }
   ],
   "n3": [
@@ -428,6 +446,24 @@
         0,
         6,
         9
+      ],
+      "bonus": [],
+      "prizes": {
+        "setStraight": 0,
+        "setBox": 0,
+        "straight": 0,
+        "box": 0,
+        "mini": 0
+      },
+      "source": "SMBC"
+    },
+    {
+      "draw": 7117,
+      "date": "2026-11-18",
+      "main": [
+        5,
+        3,
+        4
       ],
       "bonus": [],
       "prizes": {
